@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Playfair_Display } from "next/font/google";
 import { site } from "@/lib/site";
+import ScrollReveal from "@/components/ScrollReveal";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -33,8 +34,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${playfair.variable} ${montserrat.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="pt-BR"
+      className={`no-js ${playfair.variable} ${montserrat.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.remove('no-js')",
+          }}
+        />
+      </head>
+      <body>
+        {children}
+        <ScrollReveal />
+      </body>
     </html>
   );
 }

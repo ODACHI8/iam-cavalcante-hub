@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { routes, site } from "@/lib/site";
 
@@ -13,6 +16,15 @@ export default function SiteHeader({
   links: NavItem[];
   brandLinksHome?: boolean;
 }) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const brand = (
     <>
       <span className="brand-name">{site.name}</span>
@@ -21,7 +33,7 @@ export default function SiteHeader({
   );
 
   return (
-    <header className="header">
+    <header className={`header${scrolled ? " header-scrolled" : ""}`}>
       {brandLinksHome ? (
         <Link href={routes.home} className="brand">
           {brand}

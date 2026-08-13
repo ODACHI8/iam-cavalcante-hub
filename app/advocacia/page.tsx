@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import CountUp from "@/components/CountUp";
 import {
   BriefcaseIcon,
   BuildingIcon,
@@ -117,7 +118,7 @@ export default function AdvocaciaPage() {
       <SiteHeader links={navLinks} />
 
       <section className="hero">
-        <div className="hero-copy">
+        <div className="hero-copy cascade">
           <span className="eyebrow">
             <Link href={routes.home} className="crumb">
               Início
@@ -144,7 +145,7 @@ export default function AdvocaciaPage() {
           </div>
         </div>
 
-        <div className="figure-placeholder">
+        <div className="figure-placeholder cascade-figure">
           <span>
             [ detalhe: caneta sobre contrato
             <br />
@@ -154,16 +155,20 @@ export default function AdvocaciaPage() {
       </section>
 
       <section className="facts">
-        {facts.map((fact) => (
-          <div key={fact.value} className="fact">
-            <span className="fact-value">{fact.value}</span>
+        {facts.map((fact, index) => (
+          <div
+            key={fact.value}
+            className="fact reveal"
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
+            <CountUp value={fact.value} className="fact-value" />
             <span className="fact-label">{fact.label}</span>
           </div>
         ))}
       </section>
 
       <section id="areas" className="section-lg section-paper">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">Áreas de atuação</span>
           <h2 className="section-title">
             Seis frentes do direito, uma mesma leitura patrimonial.
@@ -175,10 +180,11 @@ export default function AdvocaciaPage() {
         </div>
 
         <div className="grid-2">
-          {areas.map((area) => (
+          {areas.map((area, index) => (
             <div
               key={area.title}
-              className={`card card-compact${area.badge ? " card-accent" : ""}`}
+              className={`card card-compact reveal${area.badge ? " card-accent" : ""}`}
+              style={{ transitionDelay: `${(index % 2) * 120}ms` }}
             >
               <div className="card-head">
                 {area.icon}
@@ -194,7 +200,7 @@ export default function AdvocaciaPage() {
 
       <section id="processo" className="section section-ink">
         <div className="split">
-          <div className="split-intro">
+          <div className="split-intro reveal">
             <span className="eyebrow">Como trabalho</span>
             <h2 className="split-title section-title-light">
               Do primeiro contato ao desfecho, sem você ficar no escuro.
@@ -206,8 +212,12 @@ export default function AdvocaciaPage() {
           </div>
 
           <div className="steps steps-ink">
-            {process.map((item) => (
-              <div key={item.num} className="step">
+            {process.map((item, index) => (
+              <div
+                key={item.num}
+                className="step reveal"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
                 <span className="step-num">{item.num}</span>
                 <div className="step-body">
                   <h3 className="step-title step-title-light">{item.title}</h3>
@@ -221,14 +231,18 @@ export default function AdvocaciaPage() {
 
       <section className="section section-white">
         <div className="crosslinks">
-          <div className="crosslinks-head">
+          <div className="crosslinks-head reveal">
             <span className="eyebrow">Atuação integrada</span>
             <h2 className="crosslinks-title">
               Seu caso jurídico raramente termina no processo.
             </h2>
           </div>
 
-          <Link href={routes.leiloes} className="crosslink">
+          <Link
+            href={routes.leiloes}
+            className="crosslink reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
             <h3>Mediação de Leilões</h3>
             <p>
               Ganhou um imóvel em partilha ou quer investir com desconto? Analiso
@@ -237,7 +251,11 @@ export default function AdvocaciaPage() {
             <span className="crosslink-cta">Ver leilões →</span>
           </Link>
 
-          <Link href={routes.imoveis} className="crosslink">
+          <Link
+            href={routes.imoveis}
+            className="crosslink reveal"
+            style={{ transitionDelay: "120ms" }}
+          >
             <h3>Corretagem de Imóveis</h3>
             <p>
               Precisa vender o bem partilhado ou comprar com segurança? Carteira
@@ -249,15 +267,19 @@ export default function AdvocaciaPage() {
       </section>
 
       <section className="cta section-paper">
-        <span className="eyebrow">Fale comigo</span>
-        <h2 className="cta-title">
+        <span className="eyebrow reveal">Fale comigo</span>
+        <h2 className="cta-title reveal" style={{ transitionDelay: "80ms" }}>
           Descreva seu caso. Você recebe uma leitura honesta antes de decidir.
         </h2>
-        <p className="cta-text">
+        <p className="cta-text reveal" style={{ transitionDelay: "160ms" }}>
           Se a melhor saída for um acordo — ou não fazer nada —, eu digo. Ética
           antes de honorário.
         </p>
-        <a href={site.whatsapp} className="btn btn-primary">
+        <a
+          href={site.whatsapp}
+          className="btn btn-primary reveal"
+          style={{ transitionDelay: "240ms" }}
+        >
           Falar no WhatsApp
         </a>
       </section>

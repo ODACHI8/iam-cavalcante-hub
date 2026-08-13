@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import CountUp from "@/components/CountUp";
 import { BuildingIcon, GavelIcon, ScalesIcon } from "@/components/icons";
 import { routes, site } from "@/lib/site";
 
@@ -90,7 +91,7 @@ export default function HomePage() {
       <SiteHeader links={navLinks} brandLinksHome={false} />
 
       <section className="hero hero-home">
-        <div className="hero-copy">
+        <div className="hero-copy cascade">
           <span className="eyebrow">
             <span className="eyebrow-rule" />
             Visão 360º em negócios patrimoniais
@@ -115,14 +116,14 @@ export default function HomePage() {
           <div className="hero-stats">
             {stats.map((stat) => (
               <div key={stat.value} className="stat">
-                <span className="stat-value">{stat.value}</span>
+                <CountUp value={stat.value} className="stat-value" />
                 <span className="stat-label">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="figure">
+        <div className="figure cascade-figure">
           <Image
             src="/hero.jpeg"
             alt="Ian Cavalcante em palestra"
@@ -142,7 +143,7 @@ export default function HomePage() {
       </section>
 
       <section id="sobre" className="section-lg section-white about">
-        <div className="figure figure-light">
+        <div className="figure figure-light reveal reveal-scale">
           <Image
             src="/sobre.jpeg"
             alt="Ian Samitrius Lima Cavalcante"
@@ -159,7 +160,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="about-copy">
+        <div className="about-copy reveal">
           <span className="eyebrow">Sobre</span>
           <h2 className="about-title">Ian Samitrius Lima Cavalcante</h2>
           <p className="about-text">
@@ -197,7 +198,7 @@ export default function HomePage() {
       </section>
 
       <section id="areas" className="section-lg section-paper">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">Áreas de atuação</span>
           <h2 className="section-title">
             Três frentes complementares. Escolha por onde começar.
@@ -209,8 +210,13 @@ export default function HomePage() {
         </div>
 
         <div className="grid-3 grid-3-wide">
-          {areas.map((area) => (
-            <Link key={area.title} href={area.href} className="card">
+          {areas.map((area, index) => (
+            <Link
+              key={area.title}
+              href={area.href}
+              className="card reveal"
+              style={{ transitionDelay: `${index * 120}ms` }}
+            >
               {area.icon}
               <h3 className="card-title">{area.title}</h3>
               <p className="card-text">{area.text}</p>
@@ -229,7 +235,7 @@ export default function HomePage() {
 
       <section id="diferenciais" className="section-lg section-ink">
         <div className="split">
-          <div className="split-intro">
+          <div className="split-intro reveal">
             <span className="eyebrow">Por que um especialista 3 em 1</span>
             <h2 className="split-title section-title-light">
               Menos intermediários. Menos risco. Menos tempo perdido.
@@ -241,8 +247,12 @@ export default function HomePage() {
           </div>
 
           <div className="steps steps-ink">
-            {differentials.map((item) => (
-              <div key={item.num} className="step step-lg">
+            {differentials.map((item, index) => (
+              <div
+                key={item.num}
+                className="step step-lg reveal"
+                style={{ transitionDelay: `${index * 120}ms` }}
+              >
                 <span className="step-num">{item.num}</span>
                 <div className="step-body step-body-lg">
                   <h3 className="step-title step-title-lg step-title-light">
@@ -257,15 +267,19 @@ export default function HomePage() {
       </section>
 
       <section className="cta section-white">
-        <span className="eyebrow">Ainda em dúvida?</span>
-        <h2 className="cta-title">
+        <span className="eyebrow reveal">Ainda em dúvida?</span>
+        <h2 className="cta-title reveal" style={{ transitionDelay: "80ms" }}>
           Descreva seu caso em uma mensagem. Eu digo por onde começar.
         </h2>
-        <p className="cta-text">
+        <p className="cta-text reveal" style={{ transitionDelay: "160ms" }}>
           Primeira conversa sem compromisso. Se o seu caso não for comigo, indico
           quem resolve.
         </p>
-        <a href={site.whatsapp} className="btn btn-primary">
+        <a
+          href={site.whatsapp}
+          className="btn btn-primary reveal"
+          style={{ transitionDelay: "240ms" }}
+        >
           Falar no WhatsApp
         </a>
       </section>

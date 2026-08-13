@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import CountUp from "@/components/CountUp";
 import { routes, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -99,7 +100,7 @@ export default function LeiloesPage() {
       <SiteHeader links={navLinks} />
 
       <section className="hero">
-        <div className="hero-copy">
+        <div className="hero-copy cascade">
           <span className="eyebrow">
             <Link href={routes.home} className="crumb">
               Início
@@ -125,7 +126,7 @@ export default function LeiloesPage() {
           </div>
         </div>
 
-        <div className="figure-placeholder">
+        <div className="figure-placeholder cascade-figure">
           <span>
             [ imagem: fachada de imóvel de alto padrão
             <br />
@@ -135,9 +136,13 @@ export default function LeiloesPage() {
       </section>
 
       <section className="facts">
-        {facts.map((fact) => (
-          <div key={fact.value} className="fact">
-            <span className="fact-value">{fact.value}</span>
+        {facts.map((fact, index) => (
+          <div
+            key={fact.value}
+            className="fact reveal"
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
+            <CountUp value={fact.value} className="fact-value" />
             <span className="fact-label">{fact.label}</span>
           </div>
         ))}
@@ -145,7 +150,7 @@ export default function LeiloesPage() {
 
       <section id="etapas" className="section section-paper">
         <div className="split">
-          <div className="split-intro">
+          <div className="split-intro reveal">
             <span className="eyebrow">Como funciona</span>
             <h2 className="split-title">
               Cinco etapas entre a oportunidade e a escritura.
@@ -157,8 +162,12 @@ export default function LeiloesPage() {
           </div>
 
           <div className="steps">
-            {steps.map((item) => (
-              <div key={item.num} className="step">
+            {steps.map((item, index) => (
+              <div
+                key={item.num}
+                className="step reveal"
+                style={{ transitionDelay: `${index * 90}ms` }}
+              >
                 <span className="step-num">{item.num}</span>
                 <div className="step-body">
                   <h3 className="step-title">{item.title}</h3>
@@ -171,7 +180,7 @@ export default function LeiloesPage() {
       </section>
 
       <section id="modalidades" className="section section-white">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">Modalidades</span>
           <h2 className="section-title" style={{ maxWidth: 720 }}>
             Cada tipo de leilão tem uma regra — e um risco diferente.
@@ -179,8 +188,12 @@ export default function LeiloesPage() {
         </div>
 
         <div className="grid-3">
-          {modalities.map((item) => (
-            <div key={item.title} className="crosslink">
+          {modalities.map((item, index) => (
+            <div
+              key={item.title}
+              className="crosslink reveal"
+              style={{ transitionDelay: `${index * 120}ms` }}
+            >
               <h3>{item.title}</h3>
               <p>{item.text}</p>
             </div>
@@ -190,7 +203,7 @@ export default function LeiloesPage() {
 
       <section id="riscos" className="section section-ink">
         <div className="split">
-          <div className="split-intro">
+          <div className="split-intro reveal">
             <span className="eyebrow">Riscos que eu elimino</span>
             <h2 className="split-title section-title-light">
               O desconto do leilão só é real depois da conta completa.
@@ -202,8 +215,12 @@ export default function LeiloesPage() {
           </div>
 
           <div className="steps steps-ink">
-            {risks.map((item) => (
-              <div key={item.num} className="step">
+            {risks.map((item, index) => (
+              <div
+                key={item.num}
+                className="step reveal"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
                 <span className="step-num">{item.num}</span>
                 <div className="step-body">
                   <h3 className="step-title step-title-light">{item.title}</h3>
@@ -217,14 +234,18 @@ export default function LeiloesPage() {
 
       <section className="section section-white">
         <div className="crosslinks">
-          <div className="crosslinks-head">
+          <div className="crosslinks-head reveal">
             <span className="eyebrow">Atuação integrada</span>
             <h2 className="crosslinks-title">
               O leilão é o começo. O que vem depois também é comigo.
             </h2>
           </div>
 
-          <Link href={routes.advocacia} className="crosslink">
+          <Link
+            href={routes.advocacia}
+            className="crosslink reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
             <h3>Advocacia</h3>
             <p>
               Imissão na posse, defesa da arrematação e regularização do bem
@@ -233,7 +254,11 @@ export default function LeiloesPage() {
             <span className="crosslink-cta">Consultoria jurídica →</span>
           </Link>
 
-          <Link href={routes.imoveis} className="crosslink">
+          <Link
+            href={routes.imoveis}
+            className="crosslink reveal"
+            style={{ transitionDelay: "120ms" }}
+          >
             <h3>Corretagem de Imóveis</h3>
             <p>
               Arrematou para revender? Coloco o imóvel na carteira com avaliação
@@ -245,15 +270,19 @@ export default function LeiloesPage() {
       </section>
 
       <section className="cta section-paper">
-        <span className="eyebrow">Fale comigo</span>
-        <h2 className="cta-title">
+        <span className="eyebrow reveal">Fale comigo</span>
+        <h2 className="cta-title reveal" style={{ transitionDelay: "80ms" }}>
           Encontrou um lote interessante? Me mande o edital.
         </h2>
-        <p className="cta-text">
+        <p className="cta-text reveal" style={{ transitionDelay: "160ms" }}>
           Devolvo uma leitura honesta do risco e do preço-teto. Se o negócio não
           valer a pena, eu digo antes do lance.
         </p>
-        <a href={site.whatsapp} className="btn btn-primary">
+        <a
+          href={site.whatsapp}
+          className="btn btn-primary reveal"
+          style={{ transitionDelay: "240ms" }}
+        >
           Falar no WhatsApp
         </a>
       </section>

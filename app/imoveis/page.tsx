@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import CountUp from "@/components/CountUp";
 import { routes, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -80,7 +81,7 @@ export default function ImoveisPage() {
       <SiteHeader links={navLinks} />
 
       <section className="hero">
-        <div className="hero-copy">
+        <div className="hero-copy cascade">
           <span className="eyebrow">
             <Link href={routes.home} className="crumb">
               Início
@@ -106,7 +107,7 @@ export default function ImoveisPage() {
           </div>
         </div>
 
-        <div className="figure-placeholder">
+        <div className="figure-placeholder cascade-figure">
           <span>
             [ imagem: arquitetura de alto padrão
             <br />
@@ -116,16 +117,20 @@ export default function ImoveisPage() {
       </section>
 
       <section className="facts">
-        {facts.map((fact) => (
-          <div key={fact.value} className="fact">
-            <span className="fact-value">{fact.value}</span>
+        {facts.map((fact, index) => (
+          <div
+            key={fact.value}
+            className="fact reveal"
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
+            <CountUp value={fact.value} className="fact-value" />
             <span className="fact-label">{fact.label}</span>
           </div>
         ))}
       </section>
 
       <section id="portfolio" className="section section-paper">
-        <div className="portfolio-head">
+        <div className="portfolio-head reveal">
           <div className="portfolio-head-copy">
             <span className="eyebrow">Portfólio</span>
             <h2 className="section-title" style={{ maxWidth: 640 }}>
@@ -138,8 +143,12 @@ export default function ImoveisPage() {
         </div>
 
         <div className="grid-3">
-          {properties.map((item) => (
-            <div key={item.photo} className="prop-card">
+          {properties.map((item, index) => (
+            <div
+              key={item.photo}
+              className="prop-card reveal"
+              style={{ transitionDelay: `${index * 120}ms` }}
+            >
               <div className="prop-photo">
                 <span>{item.photo}</span>
               </div>
@@ -156,7 +165,7 @@ export default function ImoveisPage() {
 
       <section id="comprar" className="section section-white">
         <div className="split-even">
-          <div className="split-intro">
+          <div className="split-intro reveal">
             <span className="eyebrow">Para quem compra</span>
             <h2 className="split-title" style={{ fontSize: 34, lineHeight: 1.18 }}>
               Você visita menos e decide melhor.
@@ -182,7 +191,11 @@ export default function ImoveisPage() {
             </div>
           </div>
 
-          <div id="vender" className="split-intro">
+          <div
+            id="vender"
+            className="split-intro reveal"
+            style={{ transitionDelay: "120ms" }}
+          >
             <span className="eyebrow">Para quem vende</span>
             <h2 className="split-title" style={{ fontSize: 34, lineHeight: 1.18 }}>
               Preço certo, comprador qualificado, zero dor de cabeça.
@@ -212,7 +225,7 @@ export default function ImoveisPage() {
 
       <section className="section section-ink">
         <div className="split">
-          <div className="split-intro">
+          <div className="split-intro reveal">
             <span className="eyebrow">Por que comigo</span>
             <h2 className="split-title section-title-light">
               Corretor e advogado na mesma mesa.
@@ -224,8 +237,12 @@ export default function ImoveisPage() {
           </div>
 
           <div className="steps steps-ink">
-            {reasons.map((item) => (
-              <div key={item.num} className="step">
+            {reasons.map((item, index) => (
+              <div
+                key={item.num}
+                className="step reveal"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
                 <span className="step-num">{item.num}</span>
                 <div className="step-body">
                   <h3 className="step-title step-title-light">{item.title}</h3>
@@ -239,14 +256,18 @@ export default function ImoveisPage() {
 
       <section className="section section-white">
         <div className="crosslinks">
-          <div className="crosslinks-head">
+          <div className="crosslinks-head reveal">
             <span className="eyebrow">Atuação integrada</span>
             <h2 className="crosslinks-title">
               Outras frentes que podem entrar no seu negócio.
             </h2>
           </div>
 
-          <Link href={routes.advocacia} className="crosslink">
+          <Link
+            href={routes.advocacia}
+            className="crosslink reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
             <h3>Advocacia</h3>
             <p>
               Inventário, usucapião, distrato ou regularização travando a venda?
@@ -255,7 +276,11 @@ export default function ImoveisPage() {
             <span className="crosslink-cta">Consultoria jurídica →</span>
           </Link>
 
-          <Link href={routes.leiloes} className="crosslink">
+          <Link
+            href={routes.leiloes}
+            className="crosslink reveal"
+            style={{ transitionDelay: "120ms" }}
+          >
             <h3>Mediação de Leilões</h3>
             <p>
               Aceita esperar um pouco mais por um preço bem abaixo do mercado? O
@@ -267,15 +292,19 @@ export default function ImoveisPage() {
       </section>
 
       <section className="cta section-paper">
-        <span className="eyebrow">Fale comigo</span>
-        <h2 className="cta-title">
+        <span className="eyebrow reveal">Fale comigo</span>
+        <h2 className="cta-title reveal" style={{ transitionDelay: "80ms" }}>
           Me diga o que você procura — ou o que precisa vender.
         </h2>
-        <p className="cta-text">
+        <p className="cta-text reveal" style={{ transitionDelay: "160ms" }}>
           Em uma conversa curta já dá para saber se o negócio é viável e por qual
           caminho seguir.
         </p>
-        <a href={site.whatsapp} className="btn btn-primary">
+        <a
+          href={site.whatsapp}
+          className="btn btn-primary reveal"
+          style={{ transitionDelay: "240ms" }}
+        >
           Falar no WhatsApp
         </a>
       </section>
