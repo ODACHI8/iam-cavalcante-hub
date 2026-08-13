@@ -974,6 +974,110 @@ img {
   white-space: nowrap;
 }
 
+/* ---------- loja ---------- */
+
+.shop {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.shop-figure {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.shop-figure:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.shop-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.shop-figure:hover img {
+  transform: scale(1.02);
+}
+
+.shop-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.shop-info .badge {
+  margin-left: 0;
+}
+
+.shop-authors {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.shop-authors strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.shop-title {
+  font-size: 34px;
+  line-height: 1.18;
+  color: var(--ink);
+  max-width: 520px;
+  text-wrap: balance;
+}
+
+.shop-text {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--body);
+  max-width: 520px;
+  text-wrap: pretty;
+}
+
+.shop-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  max-width: 480px;
+}
+
+.shop-meta-list span {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+.shop-status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bronze-dark);
+}
+
+.shop-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
 /* ---------- cross-links ---------- */
 
 .crosslinks {
@@ -1156,9 +1260,14 @@ img {
   .hero,
   .about,
   .split,
-  .split-even {
+  .split-even,
+  .shop {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+
+  .shop-figure {
+    max-width: 360px;
   }
 
   .about .figure-light {

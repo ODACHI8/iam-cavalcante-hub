@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -23,6 +24,7 @@ const navLinks = [
   { label: "Início", href: routes.home },
   { label: "Áreas do direito", href: "#areas" },
   { label: "Como trabalho", href: "#processo" },
+  { label: "Loja", href: "#loja" },
 ];
 
 const facts = [
@@ -225,6 +227,71 @@ export default function AdvocaciaPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="loja" className="section-lg section-paper">
+        <div className="section-head reveal">
+          <span className="eyebrow">Loja</span>
+          <h2 className="section-title">
+            Um capítulo a mais na sua estante jurídica.
+          </h2>
+          <p className="section-sub">
+            Livro coordenado por mim, reunindo artigos de referência sobre a
+            advocacia que resolve fora do processo.
+          </p>
+        </div>
+
+        <div className="shop">
+          <div className="shop-figure reveal reveal-scale">
+            <Image
+              src="/livro-advocacia.jpeg"
+              alt="Capa do livro Advocacia Extrajudicial: Desafios, Práticas e Transformações do Direito Contemporâneo"
+              width={640}
+              height={860}
+              sizes="(max-width: 1024px) 70vw, 26vw"
+            />
+          </div>
+
+          <div className="shop-info reveal" style={{ transitionDelay: "120ms" }}>
+            <span className="badge">Lançamento 2026</span>
+            <span className="shop-authors">
+              Coordenação: <strong>Ian Samitrius Lima Cavalcante</strong> e
+              Marcos Costa Salomão
+            </span>
+            <h3 className="shop-title">Advocacia Extrajudicial</h3>
+            <p className="shop-text">
+              Desafios, práticas e transformações do direito contemporâneo —
+              uma obra coletiva sobre a advocacia que resolve fora do processo:
+              leilões, regularização imobiliária, mediação e os novos caminhos
+              da atuação jurídica. Editora Foco, 2026.
+            </p>
+
+            <div className="shop-meta-list">
+              <span>
+                <span className="dash">—</span> Capítulos sobre mediação de
+                leilões e regularização imobiliária
+              </span>
+              <span>
+                <span className="dash">—</span> Coautoria de advogados de
+                referência em direito extrajudicial
+              </span>
+              <span>
+                <span className="dash">—</span> Edição 2026, Editora Foco
+              </span>
+            </div>
+
+            <span className="shop-status">Pré-venda aberta</span>
+
+            <div className="shop-actions">
+              <a href={site.whatsapp} className="btn btn-primary">
+                Comprar agora
+              </a>
+              <a href={site.whatsapp} className="btn btn-ghost">
+                Falar com o autor
+              </a>
+            </div>
           </div>
         </div>
       </section>
