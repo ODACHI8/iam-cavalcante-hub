@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 function isInViewport(el: Element) {
   const rect = el.getBoundingClientRect();
@@ -8,6 +9,13 @@ function isInViewport(el: Element) {
 }
 
 export default function ScrollReveal() {
+  // Componente único, montado no layout raiz: navegações entre páginas via
+  // <Link> não remontam o layout, só trocam o conteúdo da rota. O pathname
+  // como dependência força o efeito a rodar de novo a cada navegação, para
+  // observar os elementos .reveal recém-montados da nova página — sem isso,
+  // eles ficam presos em opacity:0 até um refresh.
+  const pathname = usePathname();
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -37,10 +45,9 @@ export default function ScrollReveal() {
     );
 
     // Marca como visível (ou passa a observar) qualquer .reveal pendente.
-    // Roda no mount e sempre que a aba volta a ficar visível, porque
+    // Também cobre o caso da aba voltar a ficar visível em segundo plano:
     // callbacks do IntersectionObserver ficam presos em requestAnimationFrame
-    // e podem nunca disparar enquanto a aba está em segundo plano — sem esse
-    // fallback, o elemento fica opacity:0 para sempre até um refresh.
+    // e podem nunca disparar enquanto a aba está oculta.
     const syncTargets = () => {
       document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
         if (isInViewport(el)) {
@@ -70,7 +77,7 @@ export default function ScrollReveal() {
       window.removeEventListener("pageshow", syncTargets);
       window.removeEventListener("focus", syncTargets);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
