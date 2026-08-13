@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -126,12 +127,16 @@ export default function LeiloesPage() {
           </div>
         </div>
 
-        <div className="figure-placeholder cascade-figure">
-          <span>
-            [ imagem: fachada de imóvel de alto padrão
-            <br />
-            ou detalhe de edital sobre a mesa ]
-          </span>
+        <div className="figure cascade-figure">
+          <Image
+            src="/leilao.jpeg"
+            alt="Ian Samitrius Lima Cavalcante comemorando"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            style={{ objectPosition: "50% 15%" }}
+          />
+          <div className="figure-scrim" />
         </div>
       </section>
 
