@@ -147,12 +147,16 @@ export default function AdvocaciaPage() {
           </div>
         </div>
 
-        <div className="figure-placeholder cascade-figure">
-          <span>
-            [ detalhe: caneta sobre contrato
-            <br />
-            ou estante de códigos ]
-          </span>
+        <div className="figure cascade-figure">
+          <Image
+            src="/advocacia.jpeg"
+            alt="Ian Samitrius Lima Cavalcante palestrando como advogado"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            style={{ objectPosition: "50% 20%" }}
+          />
+          <div className="figure-scrim" />
         </div>
       </section>
 
