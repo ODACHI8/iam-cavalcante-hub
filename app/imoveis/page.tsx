@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -107,12 +108,16 @@ export default function ImoveisPage() {
           </div>
         </div>
 
-        <div className="figure-placeholder cascade-figure">
-          <span>
-            [ imagem: arquitetura de alto padrão
-            <br />
-            — fachada ou interior amplo ]
-          </span>
+        <div className="figure cascade-figure">
+          <Image
+            src="/imobiliaria.jpg"
+            alt="Ian Samitrius Lima Cavalcante em evento sobre regularização imobiliária"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            style={{ objectPosition: "50% 15%" }}
+          />
+          <div className="figure-scrim" />
         </div>
       </section>
 
