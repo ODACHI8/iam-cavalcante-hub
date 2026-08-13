@@ -272,6 +272,18 @@ export default function AdvocaciaPage() {
               da atuação jurídica. Editora Foco, 2026.
             </p>
 
+            <div className="shop-tags">
+              <span className="shop-tag">Advocacia Extrajudicial</span>
+              <span className="shop-tag">Mediação de Leilões</span>
+              <span className="shop-tag">Regularização Imobiliária</span>
+              <span className="shop-tag">Direito Contemporâneo</span>
+            </div>
+
+            <div className="shop-quote">
+              “Uma obra de referência para quem pratica o direito fora da sala
+              de audiência.”
+            </div>
+
             <div className="shop-meta-list">
               <span>
                 <span className="dash">—</span> Capítulos sobre mediação de
