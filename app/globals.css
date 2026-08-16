@@ -121,7 +121,7 @@ html {
   .btn:active,
   .card:hover,
   .prop-card:hover,
-  .prop-card:hover .prop-photo,
+  .prop-card:hover .prop-photo img,
   .crosslink:hover {
     transform: none !important;
   }
@@ -881,10 +881,17 @@ img {
 .prop-card {
   display: flex;
   flex-direction: column;
+  width: 100%;
   background: var(--white);
+  border: none;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  padding: 0;
   transition: transform 300ms ease, box-shadow 300ms ease;
 }
 
@@ -893,31 +900,24 @@ img {
   box-shadow: var(--shadow-card-hover);
 }
 
-.prop-card:hover .prop-photo {
-  transform: scale(1.03);
+.prop-card:hover .prop-photo img {
+  transform: scale(1.06);
 }
 
 .prop-photo {
-  transition: transform 400ms ease;
-}
-
-.prop-photo {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   background: repeating-linear-gradient(
     135deg,
     #f1f5f9 0 14px,
     #e9eef4 14px 28px
   );
-  display: flex;
-  align-items: flex-end;
-  padding: 18px;
 }
 
-.prop-photo span {
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 11px;
-  color: var(--muted-light);
+.prop-photo img {
+  transition: transform 500ms ease;
 }
 
 .prop-body {
@@ -949,6 +949,98 @@ img {
   font-family: var(--font-serif), "Playfair Display", serif;
   font-size: 22px;
   color: var(--ink);
+}
+
+/* ---------- modal de imóvel ---------- */
+
+.prop-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  animation: fade-up 260ms ease forwards;
+}
+
+.prop-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card-hover);
+  animation: fade-scale 280ms cubic-bezier(0.16, 0.84, 0.44, 1) forwards;
+}
+
+.prop-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--white);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.prop-modal-close:hover {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.prop-modal-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.prop-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 30px 32px;
+}
+
+.prop-modal-title {
+  font-size: 26px;
+  color: var(--ink);
+}
+
+.prop-modal-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+.prop-modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--body);
+  list-style: none;
+  padding: 0;
+  margin: 4px 0;
+}
+
+.prop-modal-details .dash {
+  color: var(--bronze);
 }
 
 .portfolio-head {

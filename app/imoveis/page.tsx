@@ -4,6 +4,7 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import CountUp from "@/components/CountUp";
+import PropertyCard, { type Property } from "@/components/PropertyCard";
 import { routes, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -34,27 +35,54 @@ const facts = [
   },
 ];
 
-const properties = [
+const properties: Property[] = [
   {
-    photo: "[ foto do imóvel 01 ]",
-    kicker: "Residencial · [Bairro]",
-    title: "[Nome do empreendimento]",
-    specs: "[000] m² · [0] quartos · [0] vagas",
-    price: "R$ [000.000]",
+    photo: "/casas-bonitas-100.webp",
+    kicker: "Residencial · Jóquei, Teresina-PI",
+    title: "Residência Jóquei Clube",
+    specs: "320 m² · 4 quartos · 4 vagas",
+    price: "R$ 1.480.000",
+    neighborhood: "Jóquei, Teresina-PI",
+    description:
+      "Casa de alto padrão em condomínio fechado no Jóquei, uma das áreas mais valorizadas de Teresina. Acabamento contemporâneo, varanda gourmet integrada e área de lazer completa no condomínio.",
+    details: [
+      "4 suítes, sendo 1 master com closet",
+      "Piscina privativa e área gourmet",
+      "2 pavimentos com varanda em vidro",
+      "Condomínio com segurança 24h",
+    ],
   },
   {
-    photo: "[ foto do imóvel 02 ]",
-    kicker: "Residencial · [Bairro]",
-    title: "[Nome do empreendimento]",
-    specs: "[000] m² · [0] quartos · [0] vagas",
-    price: "R$ [000.000]",
+    photo: "/casas-bonitas-de-alvenaria.webp",
+    kicker: "Residencial · Fátima, Teresina-PI",
+    title: "Sobrado Alto do Fátima",
+    specs: "280 m² · 3 quartos · 3 vagas",
+    price: "R$ 1.150.000",
+    neighborhood: "Fátima, Teresina-PI",
+    description:
+      "Sobrado moderno no bairro Fátima, com fachada revestida em pedra natural, amplos vãos de vidro e projeto de iluminação assinado. A poucos minutos do Rio Poti e de centros comerciais.",
+    details: [
+      "3 quartos, sendo 1 suíte master",
+      "Living integrado com pé-direito duplo",
+      "Garagem coberta para 3 veículos",
+      "Próximo à orla do Rio Poti",
+    ],
   },
   {
-    photo: "[ foto do imóvel 03 ]",
-    kicker: "Comercial · [Bairro]",
-    title: "[Nome do empreendimento]",
-    specs: "[000] m² · [0] salas · [0] vagas",
-    price: "R$ [000.000]",
+    photo: "/24494-casas-bonitas-fachada-erick-figueira-de-mello-viva-decora.webp",
+    kicker: "Residencial · São Cristóvão, Teresina-PI",
+    title: "Casa Térrea São Cristóvão",
+    specs: "210 m² · 3 quartos · 2 vagas",
+    price: "R$ 820.000",
+    neighborhood: "São Cristóvão, Teresina-PI",
+    description:
+      "Casa térrea em terreno amplo no São Cristóvão, com brise de madeira na fachada, jardim paisagístico e área externa integrada. Ideal para quem busca conforto sem abrir mão da localização.",
+    details: [
+      "3 quartos, sendo 1 suíte",
+      "Jardim paisagístico e área externa ampla",
+      "Piso porcelanato em toda a residência",
+      "Rua tranquila, próxima a escolas e comércio",
+    ],
   },
 ];
 
@@ -151,18 +179,10 @@ export default function ImoveisPage() {
           {properties.map((item, index) => (
             <div
               key={item.photo}
-              className="prop-card reveal"
+              className="reveal"
               style={{ transitionDelay: `${index * 120}ms` }}
             >
-              <div className="prop-photo">
-                <span>{item.photo}</span>
-              </div>
-              <div className="prop-body">
-                <span className="prop-kicker">{item.kicker}</span>
-                <h3 className="prop-title">{item.title}</h3>
-                <span className="prop-specs">{item.specs}</span>
-                <span className="prop-price">{item.price}</span>
-              </div>
+              <PropertyCard item={item} />
             </div>
           ))}
         </div>
